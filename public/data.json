@@ -11,7 +11,6 @@
     "frames": 182,
     "total_exposure": "1h 31m",
     "processing": "Siril, Photoshop",
-    "shooting_date": "2024-05-14",
     "description": "Галактика Андромеди - найближча до Чумацького Шляху велика галактика."
   },
   {
@@ -26,7 +25,6 @@
     "frames": 54,
     "total_exposure": "54m",
     "processing": "Siril, Photoshop",
-    "shooting_date": "2024-06-19",
     "description": "Частина залишку наднової Вуаль у сузір'ї Лебедя."
   },
   {
@@ -41,7 +39,6 @@
     "frames": 0,
     "total_exposure": "6m",
     "processing": "Siril, Photoshop",
-    "shooting_date": "2024-06-19",
     "description": "Ganymede shadow transit, 3 video each ~120s"
   },
   {
@@ -56,7 +53,6 @@
     "frames": 60,
     "total_exposure": "30m",
     "processing": "Siril, Photoshop",
-    "shooting_date": "30.01.2025",
     "description": "-"
   },
   {
@@ -71,7 +67,6 @@
     "frames": 2,
     "total_exposure": "-",
     "processing": "Photoshop",
-    "shooting_date": "2024-06-19",
     "description": "Collage"
   },
   {
@@ -86,7 +81,48 @@
     "frames": 44,
     "total_exposure": "22m",
     "processing": "Siril, Photoshop",
-    "shooting_date": "2024-06-19",
     "description": "-"
+  },
+  {
+    "id": 7,
+    "object": "IC 2023 Tsuchinshan-ATLAS",
+    "date": "20.10.2024",
+    "path": "images/c2023.png",
+    "telescope": "Tamron 17-35mm F/2.8-4 Di OSD",
+    "camera": "Sony A7-IV",
+    "filters": "-",
+    "exposure": "10",
+    "frames": 15,
+    "total_exposure": "1m",
+    "processing": "Photoshop",
+    "description": "-"
+  },
+  {
+    "id": 8,
+    "object": "IC 2023 Tsuchinshan-ATLAS",
+    "date": "20.10.2024",
+    "path": "images/c2023_2.jpg",
+    "telescope": "Tamron 17-35mm F/2.8-4 Di OSD",
+    "camera": "Sony A7-IV",
+    "filters": "-",
+    "exposure": "10",
+    "frames": 15,
+    "total_exposure": "1m",
+    "processing": "Photoshop",
+    "description": "-"
+  },
+  {
+    "id": 9,
+    "object": "Plane transint over the Sun",
+    "date": "-",
+    "path": "images/sun.jpg",
+    "telescope": "Celestron C90 MAK",
+    "camera": "Sony A7-IV",
+    "filters": "-",
+    "exposure": "-",
+    "frames": 3,
+    "total_exposure": "-",
+    "processing": "Photoshop",
+    "description": "Plane transit collage"
   }
 ]
