@@ -23,7 +23,7 @@ function Navbar() {
   return (
     <nav className="bg-gray-800 py-4 px-6 flex justify-between items-center">
       <Link to="/" className="hover:text-cyan-400"> <span className="mr-2">🌌</span> Astrophoto galerry</Link>
-      <a href='https://awitwicki.github.io' className="read-the-docs" target="_blank">
+      <a href='https://github.com/awitwicki/Astrogalerry' className="read-the-docs" target="_blank">
         Github repo
       </a>
     </nav>
