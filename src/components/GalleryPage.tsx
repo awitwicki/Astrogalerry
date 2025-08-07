@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import PhotoCard from './PhotoCard.tsx';
+import type { AstroPhoto } from '../models/AstroPhoto.ts';
 
 function GalleryPage() {
-  const [photos, setPhotos] = useState([]);
+  const [photos, setPhotos] = useState<AstroPhoto[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/data.json');
+        const response = await fetch(`${import.meta.env.BASE_URL}data.json`);
         const data = await response.json();
         setPhotos(data);
         setIsLoading(false);

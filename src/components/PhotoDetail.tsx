@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import type { AstroPhoto } from '../models/AstroPhoto';
 
 function PhotoDetail() {
-  const { id } = useParams();
-  const [photo, setPhoto] = useState(null);
+  const { id } = useParams<{ id: string }>();
+  const [photo, setPhoto] = useState<AstroPhoto|null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string|null>(null);
 
   useEffect(() => {
     const fetchPhotoDetails = async () => {
       try {
-        const response = await fetch('/data.json');
-        const photos = await response.json();
-        const foundPhoto = photos.find(p => p.id === parseInt(id));
+        const response = await fetch(`${import.meta.env.BASE_URL}data.json`);
+        const photos = await response.json() as AstroPhoto[];
+        const foundPhoto: AstroPhoto | undefined = photos.find(p => p.id === parseInt(id!));
         
         if (foundPhoto) {
           setPhoto(foundPhoto);
@@ -21,7 +22,7 @@ function PhotoDetail() {
         }
         setIsLoading(false);
       } catch (err) {
-        setError('Error loading data');
+        setError(`Error loading data ${err}`);
         setIsLoading(false);
       }
     };
@@ -61,7 +62,7 @@ function PhotoDetail() {
       <div className="flex flex-col lg:flex-row gap-8">
         <div className="lg:w-2/3 bg-gray-800 rounded-xl overflow-hidden flex items-center justify-center p-2">
           <img 
-            src={'/' + photo.path} 
+            src={`${import.meta.env.BASE_URL}${photo.path}`}
             alt={photo.object}
             className="max-h-[80vh] w-auto max-w-full object-contain"
           />
@@ -95,7 +96,12 @@ function PhotoDetail() {
   );
 }
 
-function DetailItem({ label, value }) {
+type DetailItemProps = {
+  label: string;
+  value: string | number | null | undefined;
+};
+
+function DetailItem({ label, value }: DetailItemProps) {
   return (
     <div className="border-b border-gray-700 pb-3">
       <span className="text-gray-400 text-sm block">{label}:</span>
