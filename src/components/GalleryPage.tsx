@@ -51,15 +51,11 @@ function GalleryPage() {
           <p className="text-gray-400 mt-2">Try something different</p>
         </div>
       ) : (
-        <>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="columns-1 gap-5 sm:columns-2 sm:gap-8 md:columns-3 lg:columns-4">
           {filteredPhotos.map(photo => (
             <PhotoCard key={photo.id} photo={photo} />
           ))}
         </div>
-        </>
-
       )}
     </div>
   );
