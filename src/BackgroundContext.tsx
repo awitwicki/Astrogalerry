@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, PropsWithChildren } from "react";
+import React, { createContext, useContext, useState } from "react";
+import type { PropsWithChildren } from "react";
 
 interface BackgroundContextType {
   background: string | null;
