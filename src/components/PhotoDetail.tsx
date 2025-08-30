@@ -62,7 +62,7 @@ function PhotoDetail() {
       <div className="flex flex-col lg:flex-row gap-8">
         <div className="lg:w-2/3 bg-gray-800 rounded-xl overflow-hidden flex items-center justify-center p-2">
           <img 
-            src={`${import.meta.env.BASE_URL}${photo.path}`}
+            src={`${import.meta.env.BASE_URL}images/originals/${photo.fileName}`}
             alt={photo.object}
             className="max-h-[80vh] w-auto max-w-full object-contain"
           />
@@ -78,7 +78,7 @@ function PhotoDetail() {
             <DetailItem label="Filters" value={photo.filters} />
             <DetailItem label="Exposure time" value={photo.exposure} />
             <DetailItem label="Frame count" value={photo.frames} />
-            <DetailItem label="Total integration time" value={photo.total_exposure} />
+            <DetailItem label="Total integration time" value={photo.totalExposure} />
             <DetailItem label="Processing" value={photo.processing} />
             <DetailItem label="Date" value={photo.date} />
             {photo.description && (

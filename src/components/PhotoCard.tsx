@@ -10,7 +10,7 @@ function PhotoCard({ photo }: { photo: AstroPhoto }) {
       <div className="bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
         <div className="relative overflow-hidden">
           <img
-            src={`${import.meta.env.BASE_URL}${photo.path}`}
+            src={`${import.meta.env.BASE_URL}images/thumbnails/${photo.fileName}`}
             alt={photo.object}
             className="object-cover transition-transform duration-500 hover:scale-105"
             loading="lazy"
