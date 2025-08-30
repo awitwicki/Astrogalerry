@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import type { AstroPhoto } from '../models/AstroPhoto';
 
@@ -7,6 +7,13 @@ function PhotoDetail() {
   const [photo, setPhoto] = useState<AstroPhoto|null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string|null>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [zoomLevel, setZoomLevel] = useState(1);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const imageRef = useRef<HTMLImageElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchPhotoDetails = async () => {
@@ -29,6 +36,61 @@ function PhotoDetail() {
 
     fetchPhotoDetails();
   }, [id]);
+
+  const handleWheel = (e: React.WheelEvent) => {
+    if (!isFullscreen) return;
+    
+    e.preventDefault();
+    const delta = e.deltaY > 0 ? -0.2 : 0.2;
+    const newZoom = Math.max(0.5, Math.min(5, zoomLevel + delta));
+    setZoomLevel(newZoom);
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!isFullscreen || zoomLevel <= 1) return;
+    
+    e.preventDefault();
+    setIsDragging(true);
+    setDragStart({
+      x: e.clientX - position.x,
+      y: e.clientY - position.y
+    });
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !isFullscreen || zoomLevel <= 1) return;
+    
+    e.preventDefault();
+    setPosition({
+      x: e.clientX - dragStart.x,
+      y: e.clientY - dragStart.y
+    });
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const toggleFullscreen = () => {
+    if (!isFullscreen) {
+      setZoomLevel(1);
+      setPosition({ x: 0, y: 0 });
+    }
+    setIsFullscreen(!isFullscreen);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isFullscreen) {
+        setIsFullscreen(false);
+        setZoomLevel(1);
+        setPosition({ x: 0, y: 0 });
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isFullscreen]);
 
   if (isLoading) {
     return (
@@ -60,8 +122,13 @@ function PhotoDetail() {
       </Link>
 
       <div className="flex flex-col lg:flex-row gap-8">
-        <div className="lg:w-2/3 bg-gray-800 rounded-xl overflow-hidden flex items-center justify-center p-2">
+        <div 
+          className="lg:w-2/3 bg-gray-800 rounded-xl overflow-hidden flex items-center justify-center p-2 cursor-zoom-in"
+          onClick={toggleFullscreen}
+          ref={containerRef}
+        >
           <img 
+            ref={imageRef}
             src={`${import.meta.env.BASE_URL}images/originals/${photo.fileName}`}
             alt={photo.object}
             className="max-h-[80vh] w-auto max-w-full object-contain"
@@ -88,10 +155,84 @@ function PhotoDetail() {
               </div>
             )}
           </div>
-          
-          
         </div>
       </div>
+
+      {/* Повноекранний режим */}
+      {isFullscreen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center"
+          onClick={() => setIsFullscreen(false)}
+          onWheel={handleWheel}
+        >
+          <div className="absolute top-4 right-4 z-60">
+            <button 
+              className="bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 mr-4"
+              onClick={(e) => {
+                e.stopPropagation();
+                setZoomLevel(Math.max(0.5, zoomLevel - 0.2));
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <button 
+              className="bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700"
+              onClick={(e) => {
+                e.stopPropagation();
+                setZoomLevel(Math.min(5, zoomLevel + 0.2));
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+              </svg>
+            </button>
+            <button 
+              className="bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 ml-4"
+              onClick={(e) => {
+                e.stopPropagation();
+                setZoomLevel(1);
+                setPosition({ x: 0, y: 0 });
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+            </button>
+            <button 
+              className="bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 ml-4"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsFullscreen(false);
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          
+          <div className="absolute top-4 left-4 z-60 text-white">
+            Zoom: {Math.round(zoomLevel * 100)}%
+          </div>
+          
+          <img 
+            src={`${import.meta.env.BASE_URL}images/originals/${photo.fileName}`}
+            alt={photo.object}
+            className="max-w-full max-h-full object-contain"
+            style={{
+              transform: `scale(${zoomLevel}) translate(${position.x}px, ${position.y}px)`,
+              cursor: zoomLevel > 1 ? (isDragging ? 'grabbing' : 'grab') : 'zoom-out'
+            }}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 }
