@@ -80,7 +80,7 @@ function PhotoDetail() {
             <DetailItem label="Frame count" value={photo.frames} />
             <DetailItem label="Total integration time" value={photo.total_exposure} />
             <DetailItem label="Processing" value={photo.processing} />
-            <DetailItem label="Date" value={photo.shooting_date} />
+            <DetailItem label="Date" value={photo.date} />
             {photo.description && (
               <div>
                 <h3 className="text-lg font-semibold mb-2">Description</h3>

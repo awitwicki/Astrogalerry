@@ -20,7 +20,7 @@
     "path": "images/ngc_6960.png",
     "telescope": "Askar 65PHQ",
     "camera": "ZWO ASI 2600MC Pro Duo",
-    "filters": " Optolong L-eNhance (Ha, OIII)",
+    "filters": "Optolong L-eNhance (Ha, OIII)",
     "exposure": "60s",
     "frames": 54,
     "total_exposure": "54m",
@@ -124,5 +124,19 @@
     "total_exposure": "-",
     "processing": "Photoshop",
     "description": "Plane transit collage"
+  },
+  {
+    "id": 10,
+    "object": "Sadr region",
+    "date": "28.08.2025",
+    "path": "images/sadr.png",
+    "telescope": "Askar 65PHQ",
+    "camera": "ASI 2600MC pro duo",
+    "filters": "Optolong L-eNhance (Ha, OIII)",
+    "exposure": "60s",
+    "frames": 150,
+    "total_exposure": "~3h",
+    "processing": "Siril, Photoshop",
+    "description": "Sadr region."
   }
 ]
