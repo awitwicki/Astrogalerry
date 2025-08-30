@@ -1,21 +1,37 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-
+import { BackgroundProvider, useBackground } from './BackgroundContext';
 import GalleryPage from './components/GalleryPage.tsx';
 import PhotoDetail from './components/PhotoDetail.tsx';
 
+function AppContent() {
+  const { background } = useBackground();
+
+  return (
+    <div className="min-h-screen photo-background text-white" 
+    style={
+      background
+        ? ({ ['--bg-image' as any]: `url(${background})` } as React.CSSProperties)
+        : undefined
+    }
+    >
+      <Navbar />
+      <main className="container mx-auto px-4 py-8" >
+        <Routes>
+          <Route path="/" element={<GalleryPage />} />
+          <Route path="/photo/:id" element={<PhotoDetail />} />
+        </Routes>
+      </main>
+    </div>
+  );
+}
+
 function App() {
   return (
-    <Router basename="/Astrogalerry/">
-      <div className="min-h-screen bg-gray-900 text-white">
-        <Navbar />
-        <main className="container mx-auto px-4 py-8">
-          <Routes>
-            <Route path="/" element={<GalleryPage />} />
-            <Route path="/photo/:id" element={<PhotoDetail />} />
-          </Routes>
-        </main>
-      </div>
-    </Router>
+    <BackgroundProvider>
+      <Router basename="/Astrogalerry/">
+        <AppContent />
+      </Router>
+    </BackgroundProvider>
   );
 }
 
@@ -30,4 +46,4 @@ function Navbar() {
   );
 }
 
-export default App
+export default App;

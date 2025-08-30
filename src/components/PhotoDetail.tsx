@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import type { AstroPhoto } from '../models/AstroPhoto';
+import { useBackground } from '../BackgroundContext';
 
 function PhotoDetail() {
   const { id } = useParams<{ id: string }>();
@@ -14,6 +15,7 @@ function PhotoDetail() {
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const imageRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { setBackground } = useBackground();
 
   useEffect(() => {
     const fetchPhotoDetails = async () => {
@@ -21,8 +23,9 @@ function PhotoDetail() {
         const response = await fetch(`${import.meta.env.BASE_URL}data.json`);
         const photos = await response.json() as AstroPhoto[];
         const foundPhoto: AstroPhoto | undefined = photos.find(p => p.id === parseInt(id!));
-        
+
         if (foundPhoto) {
+          setBackground(`${import.meta.env.BASE_URL}images/thumbnails/${foundPhoto.fileName}`);
           setPhoto(foundPhoto);
         } else {
           setError('Photo not found');
@@ -35,7 +38,12 @@ function PhotoDetail() {
     };
 
     fetchPhotoDetails();
-  }, [id]);
+
+    return () => {
+      setBackground(null);
+    };
+  }, [id, setBackground]);
+
 
   const handleWheel = (e: React.WheelEvent) => {
     if (!isFullscreen) return;
@@ -113,7 +121,7 @@ function PhotoDetail() {
   }
 
   return (
-    <div>
+    <>
       <Link to="/" className="inline-flex items-center text-cyan-400 hover:text-cyan-300 mb-6">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
           <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
@@ -122,8 +130,8 @@ function PhotoDetail() {
       </Link>
 
       <div className="flex flex-col lg:flex-row gap-8">
-        <div 
-          className="lg:w-2/3 bg-gray-800 rounded-xl overflow-hidden flex items-center justify-center p-2 cursor-zoom-in"
+        <div
+          className="lg:w-2/3 bg-gray-800/70 border-white/10 rounded-xl overflow-hidden flex items-center justify-center p-2 cursor-zoom-in"
           onClick={toggleFullscreen}
           ref={containerRef}
         >
@@ -135,86 +143,94 @@ function PhotoDetail() {
           />
         </div>
 
-        <div className="lg:w-1/3 bg-gray-800 p-6 rounded-xl">
-          <h2 className="text-2xl font-bold mb-2">{photo.object}</h2>
-          <h3 className="text-xl text-cyan-400 mb-6">{photo.date}</h3>
-          
-          <div className="space-y-4 mb-6">
-            <DetailItem label="Telescope" value={photo.telescope} />
-            <DetailItem label="Camera" value={photo.camera} />
-            <DetailItem label="Filters" value={photo.filters} />
-            <DetailItem label="Exposure time" value={photo.exposure} />
-            <DetailItem label="Frame count" value={photo.frames} />
-            <DetailItem label="Total integration time" value={photo.totalExposure} />
-            <DetailItem label="Processing" value={photo.processing} />
-            <DetailItem label="Date" value={photo.date} />
-            {photo.description && (
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Description</h3>
-                <p className="text-gray-300">{photo.description}</p>
-              </div>
-            )}
+          <div className="lg:w-1/3 bg-gray-800/70  p-6 rounded-xl ">
+            <h2 className="text-2xl font-bold mb-2">{photo.object}</h2>
+            <h3 className="text-xl text-cyan-300 mb-6">{photo.date}</h3>
+            
+            <div className="space-y-4 mb-6">
+              <DetailItem label="Telescope" value={photo.telescope} />
+              <DetailItem label="Camera" value={photo.camera} />
+              <DetailItem label="Filters" value={photo.filters} />
+              <DetailItem label="Exposure time" value={photo.exposure} />
+              <DetailItem label="Frame count" value={photo.frames} />
+              <DetailItem label="Total integration time" value={photo.totalExposure} />
+              <DetailItem label="Processing" value={photo.processing} />
+              <DetailItem label="Date" value={photo.date} />
+              {photo.description && (
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">Description</h3>
+                  <p className="text-gray-200">{photo.description}</p>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
       </div>
 
-      {/* Повноекранний режим */}
       {isFullscreen && (
         <div 
           className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center"
           onClick={() => setIsFullscreen(false)}
           onWheel={handleWheel}
         >
-          <div className="absolute top-4 right-4 z-60">
+          <div className="absolute top-4 right-4 z-60 flex items-center gap-2 bg-black/50 backdrop-blur-sm rounded-full p-2">
             <button 
-              className="bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 mr-4"
+              className="text-white p-2 rounded-full hover:bg-white/20 transition-colors"
               onClick={(e) => {
                 e.stopPropagation();
                 setZoomLevel(Math.max(0.5, zoomLevel - 0.2));
               }}
+              title="Zoom out"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
+            
+            <span className="text-white text-sm mx-1">
+              {Math.round(zoomLevel * 100)}%
+            </span>
+            
             <button 
-              className="bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700"
+              className="text-white p-2 rounded-full hover:bg-white/20 transition-colors"
               onClick={(e) => {
                 e.stopPropagation();
                 setZoomLevel(Math.min(5, zoomLevel + 0.2));
               }}
+              title="Zoom in"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
               </svg>
             </button>
+            
             <button 
-              className="bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 ml-4"
+              className="text-white p-2 rounded-full hover:bg-white/20 transition-colors"
               onClick={(e) => {
                 e.stopPropagation();
                 setZoomLevel(1);
                 setPosition({ x: 0, y: 0 });
               }}
+              title="Reset zoom"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
               </svg>
             </button>
+            
+            <div className="h-6 w-px bg-white/30 mx-1"></div>
+            
             <button 
-              className="bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 ml-4"
+              className="text-white p-2 rounded-full hover:bg-red-500/50 transition-colors"
               onClick={(e) => {
                 e.stopPropagation();
                 setIsFullscreen(false);
               }}
+              title="Close"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-          </div>
-          
-          <div className="absolute top-4 left-4 z-60 text-white">
-            Zoom: {Math.round(zoomLevel * 100)}%
           </div>
           
           <img 
@@ -233,7 +249,7 @@ function PhotoDetail() {
           />
         </div>
       )}
-    </div>
+    </>
   );
 }
 
@@ -244,8 +260,8 @@ type DetailItemProps = {
 
 function DetailItem({ label, value }: DetailItemProps) {
   return (
-    <div className="border-b border-gray-700 pb-3">
-      <span className="text-gray-400 text-sm block">{label}:</span>
+    <div className="border-b border-white/10 pb-3">
+      <span className="text-cyan-200 text-sm block">{label}:</span>
       <span className="text-lg">{value || '—'}</span>
     </div>
   );
