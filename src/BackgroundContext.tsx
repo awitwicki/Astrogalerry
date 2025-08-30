@@ -1,4 +1,8 @@
-import { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
+
+interface BackgroundProviderProps {
+  children: React.ReactNode;
+}
 
 interface BackgroundContextType {
   background: string | null;
