@@ -1,8 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
-
-interface BackgroundProviderProps {
-  children: React.ReactNode;
-}
+import React, { createContext, useContext, useState, PropsWithChildren } from "react";
 
 interface BackgroundContextType {
   background: string | null;
@@ -19,11 +15,7 @@ export const useBackground = () => {
   return context;
 };
 
-interface BackgroundProviderProps {
-  children: ReactNode;
-}
-
-export const BackgroundProvider: React.FC<BackgroundProviderProps> = ({ children }) => {
+export const BackgroundProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [background, setBackground] = useState<string | null>(null);
 
   return (
