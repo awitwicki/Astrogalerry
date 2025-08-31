@@ -131,7 +131,7 @@ function PhotoDetail() {
     <>
       <Link
         to="/"
-        className="inline-flex items-center text-cyan-400 hover:text-cyan-300 mb-6"
+        className="inline-flex items-center hover:text-cyan-300 mb-6"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -150,7 +150,7 @@ function PhotoDetail() {
 
       <div className="flex flex-col lg:flex-row gap-8">
         <div
-          className="lg:w-2/3 bg-gray-800/70 border-white/10 rounded-xl overflow-hidden flex items-center justify-center p-2 cursor-zoom-in"
+          className="lg:w-2/3rounded-xl overflow-hidden flex items-center justify-center p-2 cursor-zoom-in"
           onClick={toggleFullscreen}
           ref={containerRef}
         >
@@ -170,7 +170,7 @@ function PhotoDetail() {
 
         <div className="lg:w-1/3 bg-gray-800/70  p-6 rounded-xl ">
           <h2 className="text-2xl font-bold mb-2">{photo.object}</h2>
-          <h3 className="text-xl text-cyan-300 mb-6">{photo.date}</h3>
+          <h3 className="text-xl text-cyan-200 mb-6">{photo.date}</h3>
 
           <div className="space-y-4 mb-6">
             <DetailItem label="Telescope" value={photo.telescope} />
@@ -220,7 +220,7 @@ function PhotoDetail() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
+                  d="M5 12h14"
                 />
               </svg>
             </button>
@@ -248,7 +248,7 @@ function PhotoDetail() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M5 15l7-7 7 7"
+                  d="M12 5v14M5 12h14"
                 />
               </svg>
             </button>

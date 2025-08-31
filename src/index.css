@@ -11,14 +11,14 @@
   content: "";
   position: absolute;
   inset: 0; 
- background-image: var(--bg-image, none);
+  background-image: var(--bg-image, none);
   background-color: var(--bg-color, #101828);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
   filter: blur(20px) brightness(0.7);
-  transform: scale(1.05);
+  transform: scale(1.2);
   z-index: -1;
   pointer-events: none;
 }
