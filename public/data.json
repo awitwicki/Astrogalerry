@@ -138,5 +138,19 @@
     "totalExposure": "~3h",
     "processing": "Siril, Photoshop",
     "description": "Sadr region."
+  },
+  {
+    "id": 11,
+    "object": "Pinwheel Galaxy",
+    "date": "28.08.2025",
+    "fileName": "m101.png",
+    "telescope": "Askar 65PHQ",
+    "camera": "ASI 2600MC pro duo",
+    "filters": "Optolong L-eNhance (Ha, OIII)",
+    "exposure": "60s-600s",
+    "frames": 461,
+    "totalExposure": "~11h",
+    "processing": "Siril, Graxpert, starnet, Photoshop",
+    "description": "Pinwheel Galaxy M101"
   }
 ]

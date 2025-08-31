@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
+import { Link as LinkIcon } from "lucide-react";
 import type { AstroPhoto } from "../models/AstroPhoto";
 import { useBackground } from "../BackgroundContext";
 
@@ -15,6 +16,7 @@ function PhotoDetail() {
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const imageRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [copied, setCopied] = useState(false);
   const { setBackground } = useBackground();
 
   useEffect(() => {
@@ -169,8 +171,25 @@ function PhotoDetail() {
         </div>
 
         <div className="lg:w-1/3 bg-gray-800/70  p-6 rounded-xl ">
-          <h2 className="text-2xl font-bold mb-2">{photo.object}</h2>
-          <h3 className="text-xl text-cyan-200 mb-6">{photo.date}</h3>
+          <h2 className="text-2xl font-bold mb-2">{photo.object} </h2>
+          <div className="flex items-center gap-2 mb-6">
+            <h3 className="text-xl text-cyan-200">{photo.date}</h3>
+            <button
+              onClick={() => {
+                const shareUrl = `${window.location.origin}/Astrogalerry/?imgid=${photo.id}`;
+                navigator.clipboard.writeText(shareUrl);
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+              }}
+              className="p-1 rounded-full bg-gray-700 hover:bg-gray-600 transition"
+              title="Share link"
+            >
+              <LinkIcon size={16} />
+            </button>
+            {copied && (
+              <span className="text-cyan-200 text-sm block">Copied</span>
+            )}
+          </div>
 
           <div className="space-y-4 mb-6">
             <DetailItem label="Telescope" value={photo.telescope} />

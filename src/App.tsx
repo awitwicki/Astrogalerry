@@ -1,10 +1,24 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useSearchParams } from 'react-router-dom';
 import { BackgroundProvider, useBackground } from './BackgroundContext';
 import GalleryPage from './components/GalleryPage.tsx';
 import PhotoDetail from './components/PhotoDetail.tsx';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 
 function AppContent() {
   const { background } = useBackground();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+
+  useEffect(() => {
+    const imgid = searchParams.get('imgid');
+    console.log('Search params:', imgid);
+    if (imgid) {
+      navigate(`/photo/${imgid}`, { replace: true });
+    }
+  }, [searchParams]);
+
 
   return (
     <div className="min-h-screen photo-background text-white" 
