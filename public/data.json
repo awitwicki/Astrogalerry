@@ -152,5 +152,19 @@
     "totalExposure": "~11h",
     "processing": "Siril, Graxpert, starnet, Photoshop",
     "description": "Pinwheel Galaxy M101"
+  },
+  {
+    "id": 12,
+    "object": "Heart Nebula (IC 1805)",
+    "date": "05-25.03.2025",
+    "fileName": "ic1805.jpg",
+    "telescope": "Askar 65PHQ",
+    "camera": "Sony A7-IV",
+    "filters": "Optolong L-eNhance (Ha, OIII)",
+    "exposure": "30s",
+    "frames": 800,
+    "totalExposure": "~8h",
+    "processing": "Pixinsight, Graxpert, starnet, Photoshop",
+    "description": "90GB raws, 1.2TB WBPP Processing data"
   }
 ]
