@@ -12,6 +12,7 @@ function GalleryPage() {
       try {
         const response = await fetch(`${import.meta.env.BASE_URL}data.json`);
         const data = await response.json();
+        data.sort((a: AstroPhoto, b: AstroPhoto) => b.id - a.id);
         setPhotos(data);
         setIsLoading(false);
       } catch (error) {
