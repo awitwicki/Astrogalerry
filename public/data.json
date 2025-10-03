@@ -166,5 +166,19 @@
     "totalExposure": "~8h",
     "processing": "Pixinsight, Graxpert, starnet, Photoshop",
     "description": "90GB raws, 1.2TB WBPP Processing data"
+  },
+  {
+    "id": 13,
+    "object": "Crescent Nebula (NGC 6888)",
+    "date": "02-03.10.2025",
+    "fileName": "crescent.jpg",
+    "telescope": "Askar 65PHQ",
+    "camera": "ASI 2600MC pro duo",
+    "filters": "Optolong L-eNhance (Ha, OIII)",
+    "exposure": "180",
+    "frames": 66,
+    "totalExposure": "~3h",
+    "processing": "Pixinsight, starnet, deepsnr, Photoshop",
+    "description": "-"
   }
 ]
