@@ -180,5 +180,19 @@
     "totalExposure": "~3h",
     "processing": "Pixinsight, starnet, deepsnr, Photoshop",
     "description": "-"
+  },
+  {
+    "id": 14,
+    "object": "The Moon",
+    "date": "16.05.2024",
+    "fileName": "moon.jpg",
+    "telescope": "Celestron C90 MAK",
+    "camera": "Sony A7-IV",
+    "filters": "CPL",
+    "exposure": "-",
+    "frames": 60,
+    "totalExposure": "~1m video",
+    "processing": "Autostakkert, Photoshop",
+    "description": "-"
   }
 ]
