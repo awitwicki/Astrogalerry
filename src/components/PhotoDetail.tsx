@@ -333,7 +333,7 @@ function PhotoDetail() {
             style={{
               transform: `scale(${zoomLevel}) translate(${position.x}px, ${position.y}px)`,
               cursor:
-                zoomLevel > 1 ? (isDragging ? "grabbing" : "grab") : "zoom-out",
+                zoomLevel > 1 ? (isDragging ? "grabbing" : "grab") : "",
             }}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
