@@ -174,10 +174,10 @@
     "fileName": "crescent.jpg",
     "telescope": "Askar 65PHQ",
     "camera": "ASI 2600MC pro duo",
-    "filters": "Optolong L-eNhance (Ha, OIII)",
+    "filters": "Optolong L-eNhance (Ha, OIII), UV/IR",
     "exposure": "180",
-    "frames": 66,
-    "totalExposure": "~3h",
+    "frames": 272,
+    "totalExposure": "~7h",
     "processing": "Pixinsight, starnet, deepsnr, Photoshop",
     "description": "-"
   },
