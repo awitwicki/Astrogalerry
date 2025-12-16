@@ -208,5 +208,19 @@
     "totalExposure": "1h",
     "processing": "Pixinsight, starnet, Photoshop",
     "description": "-"
+  },
+  {
+    "id": 16,
+    "object": "North America Nebula NGC 7000",
+    "date": "10-15.12.2025",
+    "fileName": "ngc_7000.png",
+    "telescope": "Askar 65PHQ",
+    "camera": "ASI 2600MC pro duo",
+    "filters": "Optolong L-eNhance (Ha, OIII)",
+    "exposure": "180s",
+    "frames": 62,
+    "totalExposure": "3h 6m",
+    "processing": "Pixinsight, Photoshop",
+    "description": "Thanks to V.K. for help with processing"
   }
 ]
