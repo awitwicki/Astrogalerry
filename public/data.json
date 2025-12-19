@@ -222,8 +222,7 @@
     "totalExposure": "3h 6m",
     "processing": "Pixinsight, Photoshop",
     "description": "Thanks to V.K. for help with processing"
-  }
-  ,
+  },
   {
     "id": 17,
     "object": "NGC 6960 - Veil nebula",
@@ -237,5 +236,19 @@
     "totalExposure": "2h",
     "processing": "Pixinsight, Graxpert, Photoshop",
     "description": "2 Frame mosaic. 1H integration for each frame"
+  },
+  {
+    "id": 18,
+    "object": "IC 1396 - Elephant's Trunk Nebula",
+    "date": "4.11.2025-18.12.2025",
+    "fileName": "ic1396.jpg",
+    "telescope": "Askar 65PHQ",
+    "camera": "ASI 2600MC pro duo",
+    "filters": "Optolong L-eNhance (Ha, OIII)",
+    "exposure": "180s",
+    "frames": 81,
+    "totalExposure": "4h",
+    "processing": "Pixinsight, Graxpert, Photoshop",
+    "description": ""
   }
 ]
