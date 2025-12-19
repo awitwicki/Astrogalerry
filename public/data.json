@@ -223,4 +223,19 @@
     "processing": "Pixinsight, Photoshop",
     "description": "Thanks to V.K. for help with processing"
   }
+  ,
+  {
+    "id": 17,
+    "object": "NGC 6960 - Veil nebula",
+    "date": "18.12.2025",
+    "fileName": "veil_mosaic.jpg",
+    "telescope": "Askar 65PHQ",
+    "camera": "ASI 2600MC pro duo",
+    "filters": "Optolong L-eNhance (Ha, OIII)",
+    "exposure": "180s",
+    "frames": 40,
+    "totalExposure": "2h",
+    "processing": "Pixinsight, Graxpert, Photoshop",
+    "description": "2 Frame mosaic. 1H integration for each frame"
+  }
 ]
