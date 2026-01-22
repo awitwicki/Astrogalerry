@@ -250,5 +250,19 @@
     "totalExposure": "4h",
     "processing": "Pixinsight, Graxpert, Photoshop",
     "description": ""
+  },
+  {
+    "id": 19,
+    "object": "Heart Nebula (IC 1805)",
+    "date": "03-21.01.2026",
+    "fileName": "ic1805_2.jpg",
+    "telescope": "Askar 65PHQ",
+    "camera": "ASI 2600MC pro duo",
+    "filters": "Antlia ALP-T Dualband 3nm Ha&OIII",
+    "exposure": "180s",
+    "frames": 124,
+    "totalExposure": "~10h",
+    "processing": "Pixinsight, Graxpert, starnet, Photoshop",
+    "description": "6.2h dualband data, 30m uv/ir cut for stars, from total 10h integration before filtering"
   }
 ]
