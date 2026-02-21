@@ -264,5 +264,19 @@
     "totalExposure": "~10h",
     "processing": "Pixinsight, Graxpert, starnet, Photoshop",
     "description": "6.2h dualband data, 30m uv/ir cut for stars, from total 10h integration before filtering"
+  },
+  {
+    "id": 20,
+    "object": "The Cosmic Question Mark (NGC 7822)",
+    "date": "03-21.01.2026",
+    "fileName": "ngc7822.jpg",
+    "telescope": "Askar 65PHQ",
+    "camera": "ASI 2600MC pro duo",
+    "filters": "Antlia ALP-T Dualband 3nm Ha&OIII",
+    "exposure": "180s",
+    "frames": 82,
+    "totalExposure": "~5h",
+    "processing": "Pixinsight, Graxpert, starnet, Photoshop",
+    "description": "4h dualband data, 60m uv/ir cut for stars, from total 5h integration"
   }
 ]
