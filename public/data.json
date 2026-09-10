@@ -278,5 +278,47 @@
     "totalExposure": "~5h",
     "processing": "Pixinsight, Graxpert, starnet, Photoshop",
     "description": "4h dualband data, 60m uv/ir cut for stars, from total 5h integration"
+  },
+  {
+    "id": 21,
+    "object": "M45 - Pleiades",
+    "fileName": "pleyades.jpg",
+    "date": "09-10.09.2026",
+    "telescope": "William Optics UltraCAT 56 WIFD",
+    "camera": "ASI 2600MC pro duo",
+    "filters": "UV/IR cut",
+    "exposure": "30s",
+    "frames": 22,
+    "totalExposure": "11m",
+    "processing": "Pixinsight",
+    "description": ""
+  },
+  {
+    "id": 22,
+    "object": "M42 Great Orion Nebula & Running Man (NGC 1977)",
+    "fileName": "orion.jpg",
+    "date": "09-10.09.2026",
+    "telescope": "William Optics UltraCAT 56 WIFD",
+    "camera": "ASI 2600MC pro duo",
+    "filters": "UV/IR cut",
+    "exposure": "30s",
+    "frames": 11,
+    "totalExposure": "5.5m",
+    "processing": "Pixinsight",
+    "description": ""
+  },
+  {
+    "id": 23,
+    "object": "Shark Nebula (LDN 1235)",
+    "fileName": "shark.png",
+    "date": "09-10.08.2026",
+    "telescope": "William Optics UltraCAT 56 WIFD",
+    "camera": "ASI 2600MC pro duo",
+    "filters": "UV/IR cut",
+    "exposure": "30s",
+    "frames": 330,
+    "totalExposure": "2h 45m",
+    "processing": "Pixinsight, Graxpert, Photoshop",
+    "description": "Dark nebula in Cepheus. 330 x 30s, Bortle 2"
   }
 ]
