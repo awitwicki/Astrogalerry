@@ -310,7 +310,7 @@
   {
     "id": 23,
     "object": "Shark Nebula (LDN 1235)",
-    "fileName": "shark.png",
+    "fileName": "shark.jpg",
     "date": "09-10.08.2026",
     "telescope": "William Optics UltraCAT 56 WIFD",
     "camera": "ASI 2600MC pro duo",
@@ -318,7 +318,20 @@
     "exposure": "30s",
     "frames": 330,
     "totalExposure": "2h 45m",
-    "processing": "Pixinsight, Graxpert, Photoshop",
+    "processing": "Pixinsight, Photoshop",
     "description": "Dark nebula in Cepheus. 330 x 30s, Bortle 2"
+  },
+    {
+    "id": 24,
+    "object": "M31 - Галактика Андромеди",
+    "date": "09-10.08.2026",
+    "fileName": "m31_2.jpg",
+    "telescope": "William Optics UltraCAT 56 WIFD",
+    "camera": "ASI 2600MC pro duo",
+    "filters": "UV/IR cut",
+    "exposure": "60s",
+    "frames": 335,
+    "totalExposure": "5h 30m",
+    "description": ""
   }
 ]
